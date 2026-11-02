@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="Explore MDCP's portable developer skills for Claude, Codex, ChatGPT, MCP and modern AI coding agents. Search, copy and use the right skill.">
+<meta property="og:title" content="MDCP Skill Explorer">
+<meta property="og:description" content="Find the right developer skill for your AI coding agent.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://badhon-00.github.io/MDCP/">
+<title>MDCP — Skill Explorer</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#111827;--panel2:#151f31;--line:#26344b;--text:#edf3ff;--muted:#9aa9c1;--accent:#a78bfa;--cyan:#67e8f9;--green:#86efac}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% -10%,#28204d 0,transparent 38%),radial-gradient(ellipse at 95% 10%,#103b4b 0,transparent 30%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:24px 20px 70px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:8px 0 32px}.brand{font-weight:800;letter-spacing:.04em}.brand span{color:var(--accent)}.navlinks{display:flex;gap:18px;color:var(--muted);font-size:13px}
+.hero{padding:34px 0 24px;max-width:800px}.eyebrow{color:var(--cyan);font-size:12px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(36px,7vw,66px);line-height:1.04;letter-spacing:-.055em;margin:14px 0}.gradient{background:linear-gradient(100deg,#fff 15%,#c4b5fd 58%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:17px;max-width:680px}.stats{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.stat{border:1px solid var(--line);background:#111827aa;padding:9px 13px;border-radius:12px;color:var(--muted);font-size:13px}.stat strong{color:var(--text)}
+.toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;margin:24px 0 14px}.search{width:100%;background:#0f1727;border:1px solid var(--line);border-radius:14px;padding:15px 16px;color:var(--text);font:inherit;outline:none}.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px #a78bfa22}
+select{background:#0f1727;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:0 14px;font:inherit}.chips{display:flex;gap:8px;overflow:auto;padding:4px 0 16px}.chip{border:1px solid var(--line);background:#101827;color:var(--muted);padding:7px 12px;border-radius:99px;white-space:nowrap;font-size:12px;cursor:pointer}.chip.active{border-color:#8b5cf6;color:#fff;background:#5b21b633}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px;margin:8px 0 14px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{min-width:0;border:1px solid var(--line);background:linear-gradient(150deg,#151e30,#0f1725);border-radius:16px;padding:17px;display:flex;flex-direction:column;gap:10px;transition:transform .18s,border-color .18s}.card:hover{transform:translateY(-2px);border-color:#7562b3}.tag{font-size:10px;letter-spacing:.06em;color:var(--cyan);text-transform:uppercase;font-weight:750}.card h2{font-size:17px;margin:0;overflow-wrap:anywhere}.desc{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;min-height:78px}.actions{display:flex;gap:8px;margin-top:auto}.btn{border:1px solid var(--line);background:#1c2940;color:var(--text);padding:8px 11px;border-radius:10px;font-size:12px;cursor:pointer}.btn.primary{background:#6d4bd1;border-color:#8b70e8}.btn:hover{filter:brightness(1.15)}
+.empty,.status{border:1px dashed var(--line);border-radius:16px;padding:28px;text-align:center;color:var(--muted);grid-column:1/-1}.foot{margin-top:42px;border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar{grid-template-columns:1fr}.toolbar select{min-height:46px}}
+@media(max-width:520px){.wrap{padding:16px 14px 50px}nav{padding-bottom:20px}.navlinks{gap:10px;font-size:11px}.hero{padding-top:24px}.lead{font-size:15px}.grid{grid-template-columns:1fr}.desc{min-height:0}.card{padding:16px}.meta{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="brand" href="https://github.com/Badhon-00/MDCP">MDCP<span> / EXPLORER</span></a><div class="navlinks"><a href="https://github.com/Badhon-00/MDCP">Repository ↗</a><a href="https://github.com/Badhon-00/MDCP/discussions">Community ↗</a></div></nav>
+<header class="hero"><div class="eyebrow">Master Developer Claude Plugin</div><h1>Find your next <span class="gradient">developer skill.</span></h1><p class="lead">A searchable library of practical instructions for Claude, Codex, ChatGPT and other AI coding agents. Find a skill, inspect it, and add it to the workflow you already use.</p><div class="stats"><div class="stat"><strong id="count">—</strong> skills</div><div class="stat"><strong>Open source</strong> · MIT project</div><div class="stat"><strong>Mobile-first</strong> · works on phone</div></div></header>
+<div class="toolbar"><input id="search" class="search" type="search" placeholder="Search skills, tasks, APIs, security…" aria-label="Search skills"><select id="sort" aria-label="Sort skills"><option value="az">Name: A to Z</option><option value="za">Name: Z to A</option><option value="category">Category</option></select></div>
+<div id="chips" class="chips" aria-label="Filter by category"></div><div class="meta"><span id="results">Loading skill catalog…</span><span>Choose a skill to view or copy its link</span></div>
+<main id="grid" class="grid"><div class="status">Loading MDCP skills…</div></main>
+<footer class="foot"><span>Built from the repository's <code>skills/*/SKILL.md</code> files.</span><span><a href="https://github.com/Badhon-00/MDCP">Star / fork / contribute on GitHub ↗</a></span></footer>
+</div>
+<script>
+const REPO="Badhon-00/MDCP";let skills=[],active="All";
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+ const q=$("search").value.trim().toLowerCase();
+ let rows=skills.filter(s=>(active==="All"||s.category===active)&&[s.name,s.description,s.category].join(" ").toLowerCase().includes(q));
+ const sort=$("sort").value;rows.sort((a,b)=>sort==="za"?b.name.localeCompare(a.name):sort==="category"?a.category.localeCompare(b.category)||a.name.localeCompare(b.name):a.name.localeCompare(b.name));
+ $("results").textContent=rows.length+" matching skill"+(rows.length===1?"":"s");
+ $("grid").innerHTML=rows.length?rows.map(s=>'<article class="card"><div class="tag">'+esc(s.category)+'</div><h2>'+esc(s.name)+'</h2><p class="desc">'+esc(s.description||"Open this skill to read its instructions and intended use.")+'</p><div class="actions"><a class="btn primary" href="'+esc(s.url)+'" target="_blank" rel="noopener">View skill ↗</a><button class="btn" data-copy="'+esc(s.raw)+'">Copy link</button></div></article>').join(""):'<div class="empty">No matching skills. Try a broader search or another category.</div>';
+ $("grid").querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);b.textContent="Copied ✓";setTimeout(()=>b.textContent="Copy link",1400)}catch{b.textContent="Open View skill"}}));
+}
+function categories(){const values=["All",...new Set(skills.map(s=>s.category).sort())];$("chips").innerHTML=values.map(c=>'<button class="chip '+(c===active?"active":"")+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join("");$("chips").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.cat;categories();render()}));}
+async function init(){try{const r=await fetch("./catalog.json",{cache:"no-cache"});if(!r.ok)throw new Error("Catalog HTTP "+r.status);const data=await r.json();skills=Array.isArray(data.skills)?data.skills:[];$("count").textContent=data.count??skills.length;categories();render();}catch(e){$("grid").innerHTML='<div class="empty">Could not load the catalog. Open the <a href="https://github.com/'+REPO+'/tree/main/skills">skills folder on GitHub ↗</a>.</div>';$("results").textContent="Catalog unavailable";}}
+$("search").addEventListener("input",render);$("sort").addEventListener("change",render);init();
+</script>
+</body></html>
