@@ -9,7 +9,7 @@ def main():
     sub=p.add_subparsers(dest="cmd",required=True)
     s=sub.add_parser("search",help="search public GitHub repositories concurrently"); s.add_argument("queries",nargs="+"); s.add_argument("--limit",type=int,default=30); s.add_argument("--workers",type=int,default=8); s.add_argument("--output")
     c=sub.add_parser("context",help="build a bounded local context pack"); c.add_argument("root",nargs="?",default="."); c.add_argument("--max-chars",type=int,default=12000); c.add_argument("--max-files",type=int,default=100); c.add_argument("--output")
-    a=sub.add_parser("analyze",help="run specialist analysis using an OpenAI-compatible endpoint"); a.add_argument("root",nargs="?",default="."); a.add_argument("--agents",type=int,default=8); a.add_argument("--max-parallel",type=int,default=8); a.add_argument("--max-files",type=int,default=100); a.add_argument("--max-chars",type=int,default=50000); a.add_argument("--roles",nargs="*"); a.add_argument("--output",default=".mdcp/reports/agent-fabric.json")
+    a=sub.add_parser("analyze",help="run specialist analysis using an OpenAI-compatible endpoint"); a.add_argument("root",nargs="?",default="."); a.add_argument("--agents",type=int,default=8); a.add_argument("--max-parallel",type=int,default=8); a.add_argument("--max-files",type=int,default=100); a.add_argument("--max-chars",type=int,default=12000); a.add_argument("--roles",nargs="*"); a.add_argument("--output",default=".mdcp/reports/agent-fabric.json")
     args=p.parse_args()
     if args.cmd=="search":
         repos,errors=search_repositories(args.queries,args.limit,args.workers); result={"repositories":repos,"errors":errors}

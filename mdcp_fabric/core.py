@@ -4,6 +4,12 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 MAX_WORKERS = 64
+SECRET_PATTERNS = [re.compile(r"(?i)(api[_-]?key|access[_-]?token|secret|password)\s*[:=]\s*[\"\']?([^\s\"\',;]+)"), re.compile(r"(?i)Bearer\s+[A-Za-z0-9._~+/-]+=*"), re.compile(r"gh[pousr]_[A-Za-z0-9]{20,}"), re.compile(r"sk-[A-Za-z0-9_-]{20,}")]
+
+def redact_secrets(text: str) -> str:
+    for pattern in SECRET_PATTERNS:
+        text = pattern.sub(lambda m: (m.group(1) + "=[REDACTED]") if m.lastindex else "[REDACTED_TOKEN]", text)
+    return text
 SKIP_DIRS = {".git","node_modules","vendor","dist","build","coverage","__pycache__",".venv","venv",".next",".nuxt","target",".idea",".mdcp"}
 SECRET_PARTS = {".env","id_rsa","id_ed25519","credentials","secrets"}
 TEXT_SUFFIXES = {".py",".js",".jsx",".ts",".tsx",".mjs",".cjs",".json",".yaml",".yml",".toml",".ini",".md",".mdx",".html",".css",".scss",".sql",".go",".rs",".java",".kt",".swift",".php",".rb",".sh",".ps1",".c",".h",".cpp",".cs",".xml",".gradle",".dockerfile"}
@@ -28,7 +34,7 @@ def inventory(root: Path, max_files=160, max_file_bytes=24000):
                 raw=p.read_bytes()
                 text=raw.decode("utf-8")
                 if "\x00" in text: continue
-                out.append({"path":p.relative_to(root).as_posix(),"size":size,"sha256":hashlib.sha256(raw).hexdigest(),"text":text})
+                out.append({"path":p.relative_to(root).as_posix(),"size":size,"sha256":hashlib.sha256(raw).hexdigest(),"text":redact_secrets(text)})
             except (OSError,UnicodeError): continue
             if len(out)>=max_files: return out
     return out
@@ -73,13 +79,13 @@ def search_repositories(queries, limit=30, workers=8):
 
 def _chat_completion(base_url, api_key, model, system, user, timeout=90):
     url=base_url.rstrip("/")+"/chat/completions"
-    payload={"model":model,"temperature":0.1,"messages":[{"role":"system","content":system},{"role":"user","content":user}]}
+    payload={"model":model,"temperature":0.1,"max_tokens":1400,"messages":[{"role":"system","content":system},{"role":"user","content":user}]}
     data=json.dumps(payload).encode()
     req=urllib.request.Request(url,data=data,headers={"Content-Type":"application/json","Authorization":"Bearer "+api_key,"User-Agent":"MDCP-Agent-Fabric/0.3"})
     with urllib.request.urlopen(req,timeout=timeout) as res: body=json.loads(res.read().decode())
     return body["choices"][0]["message"]["content"]
 
-def run_agents(root: Path, roles, agents=8, max_parallel=8, max_files=100, max_chars=50000):
+def run_agents(root: Path, roles, agents=8, max_parallel=8, max_files=100, max_chars=12000):
     base=os.getenv("MDCP_LLM_BASE_URL","").strip()
     key=os.getenv("MDCP_LLM_API_KEY","").strip()
     model=os.getenv("MDCP_LLM_MODEL","").strip()
@@ -91,16 +97,22 @@ def run_agents(root: Path, roles, agents=8, max_parallel=8, max_files=100, max_c
     n=min(max(1,int(agents)),len(selected),MAX_WORKERS)
     parallel=max(1,min(int(max_parallel),n,MAX_WORKERS))
     files=inventory(root,max_files=max_files)
-    # Share bounded inventory; cap aggregate prompt size to avoid accidental huge context uploads.
-    excerpts=[]; used=0
-    for f in files:
-        block=f"\n### {f['path']}\n{f['text'][:5000]}\n"
-        if used+len(block)>max_chars: break
-        excerpts.append(block); used+=len(block)
     prompt= PROMPT_PATH.read_text()
-    evidence="".join(excerpts)
     def one(role):
-        task=json.dumps({"role":role["id"],"focus":role["focus"],"repository_files":evidence},ensure_ascii=False)
+        terms=set(re.findall(r"[a-z0-9_]{3,}", (role["id"]+" "+role["focus"]).lower()))
+        ranked=[]
+        for f in files:
+            hay=(f["path"]+" "+f["text"][:12000]).lower()
+            score=sum(1 for term in terms if term in hay)
+            if score: ranked.append((score,f))
+        ranked.sort(key=lambda x:(-x[0],x[1]["path"]))
+        excerpts=[]; used=0
+        for score,f in ranked[:30]:
+            block=f"\\n### {f['path']}\\n{f['text'][:2500]}\\n"
+            if used+len(block)>max_chars: continue
+            excerpts.append(block); used+=len(block)
+        evidence="".join(excerpts) or "No relevant text files found within configured limits."
+        task=json.dumps({"role":role["id"],"focus":role["focus"],"repository_files":evidence,"context_chars":len(evidence)},ensure_ascii=False)
         try:
             raw=_chat_completion(base,key,model,prompt,task)
             try: parsed=json.loads(raw)
