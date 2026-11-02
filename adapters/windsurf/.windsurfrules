@@ -1,0 +1,3 @@
+# MDCP Windsurf Workspace Rules
+
+Use MDCP_CONTEXT.md as the short project brief. Inspect only the files needed for the task. Load the smallest relevant skill set. Verify current APIs against official documentation. Do not assume connectors, credentials, shell permissions or persistent memory are available. Test changes and report unverified work honestly. Keep durable handoff notes concise and free of secrets.
