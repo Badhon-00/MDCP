@@ -1,0 +1,8 @@
+{
+  "name": "mdcp",
+  "version": "1.2.0",
+  "description": "Master Developer Claude.ai Plugin: master-developer skill (rules on demand) plus 50 more skills: security, testing, backend, UI/UX, Three.js, clean-room app cloning, self-check and a token meter.",
+  "author": { "name": "Badhon-00" },
+  "license": "See THIRD_PARTY_NOTICES.md",
+  "keywords": ["nextjs", "typescript", "security", "owasp", "prisma", "threejs", "testing"]
+}

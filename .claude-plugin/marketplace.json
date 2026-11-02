@@ -1,0 +1,11 @@
+{
+  "name": "mdcp-marketplace",
+  "owner": { "name": "Badhon-00" },
+  "plugins": [
+    {
+      "name": "mdcp",
+      "source": "./",
+      "description": "Master Developer Claude.ai Plugin (skill: master-developer)"
+    }
+  ]
+}

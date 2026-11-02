@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "context7": { "type": "http", "url": "https://mcp.context7.com/mcp" },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": { "Authorization": "Bearer ${GITHUB_TOKEN}" }
+    },
+    "supabase": { "type": "http", "url": "https://mcp.supabase.com/mcp" },
+    "sentry": { "type": "http", "url": "https://mcp.sentry.dev/mcp" }
+  }
+}
