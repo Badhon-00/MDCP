@@ -25,6 +25,8 @@ MDCP currently includes **82 curated skills** across core development, security,
 
 See [platform adapters](adapters/README.md) and the [universal architecture](docs/UNIVERSAL_AI_ARCHITECTURE.md).
 
+**Using Claude on Android or iPhone?** Follow the [Claude.ai mobile-first setup guide](docs/CLAUDE_AI_MOBILE.md) for Project instructions, skill uploads, remote MCP connectors, and phone-friendly workflows.
+
 ## Token efficiency and project memory
 
 LLM inference is not free and MDCP cannot guarantee zero token consumption or a fixed 80–90% reduction. It helps avoid unnecessary repeated reads by creating a small, bounded project-context pack and storing explicit decisions locally.
