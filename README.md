@@ -157,6 +157,18 @@ MDCP/
 └── README.md
 ```
 
+## Skill health report
+
+Inspect every packaged skill, catch broken local links, and generate a deterministic Markdown or JSON report:
+
+```bash
+python3 scripts/skill_report.py
+python3 scripts/skill_report.py --format json
+python3 scripts/skill_report.py --check
+```
+
+The report runs in CI and appears in the GitHub Actions job summary. It checks documentation structure, not security or host compatibility. See [Skill Health](docs/SKILL_HEALTH.md).
+
 ## Quality and security
 
 - Curated skills retain their upstream licenses and attribution.
