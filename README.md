@@ -48,6 +48,44 @@ python3 tools/mdcp_memory.py forget 1
 
 The database lives in `.mdcp/memory.sqlite3` and is ignored by Git by default. The utility does **not** write to ChatGPT Memory, Claude memory, Codex session memory, or any provider-private storage. Feed the generated context pack to the agent or configure the host to load it. Read [Token Efficiency & Memory](docs/TOKEN_EFFICIENCY_AND_MEMORY.md).
 
+## Free and local LLM routing (OmniRoute + Ollama)
+
+MDCP includes an integration pack for [OmniRoute](https://github.com/akoeraste/omniroute), a separately maintained open-source AI gateway. It provides one local OpenAI-compatible endpoint, provider/model routing, and fallback according to the providers and accounts you configure. MDCP does not vendor or claim ownership of OmniRoute.
+
+- **Local/private:** Ollama serves models on your own machine. No hosted API quota, but inference is limited by your hardware, memory and electricity.
+- **Free hosted tiers:** connect eligible providers such as Gemini API, Groq, Cerebras, Cloudflare Workers AI, NVIDIA NIM, Hugging Face or OpenRouter free models where currently offered. Each provider controls its own quotas, regions, eligibility, model access and terms.
+- **Routing:** OmniRoute can route compatible coding CLIs through one local gateway and use configured fallback candidates when supported.
+- **Claude Code + Codex CLI:** use OmniRoute's documented CLI launch/configuration commands. Do not replace your existing provider credentials or config blindly.
+- **Claude.ai and ChatGPT web apps:** skills/instructions can be reused there, but those hosted chat interfaces do not become OmniRoute clients merely by installing this repository. A supported API/action or compatible client is required.
+
+### Quick start
+
+```bash
+# Install the upstream gateway (review its docs and release first)
+npm install -g omniroute
+omniroute
+
+# Open http://localhost:20128, connect providers you are eligible to use,
+# and copy the gateway API key from Dashboard -> Endpoints.
+
+# Launch compatible coding CLIs through the gateway
+omniroute run claude --model auto/coding
+omniroute run codex --model auto/coding
+
+# Or use the upstream guided configuration
+omniroute configure claude
+omniroute configure codex
+
+# Optional: connect the local Ollama service in OmniRoute's Providers UI.
+# Install Ollama separately, start it, and pull a model that fits your hardware.
+ollama serve
+ollama pull qwen2.5-coder:7b
+```
+
+See [OmniRoute + Ollama integration guide](integrations/omniroute/README.md), [free provider notes](integrations/omniroute/FREE_PROVIDERS.md), and the reusable [OmniRoute routing skill](skills/omniroute-free-llm-routing/SKILL.md).
+
+**No unlimited hosted usage promise:** free tiers are rate-limited and can change or disappear. MDCP does not bypass quotas, rotate accounts to evade limits, or guarantee a zero-cost route. For genuinely uncapped local usage, run Ollama locally subject to hardware constraints.
+
 ## Connectors and MCP
 
 MDCP documents optional connector categories including source control, documentation, databases, design, browser testing, deployment, observability and team workflows. Connectors must be installed and authenticated in the host environment. Availability varies by provider and account.

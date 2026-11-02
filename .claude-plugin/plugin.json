@@ -1,6 +1,6 @@
 {
   "name": "mdcp",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Master Developer Claude.ai Plugin: master-developer skill (rules on demand) plus 81 more skills: security, testing, backend, UI/UX and design, workflow, plugin and MCP building, Three.js, clean-room app cloning, self-check and a token meter.",
   "author": {
     "name": "Badhon-00"
@@ -8,6 +8,11 @@
   "license": "MIT (this repo); bundled skills keep their own licenses, see THIRD_PARTY_NOTICES.md",
   "keywords": [
     "claude-code",
+    "codex",
+    "ollama",
+    "omniroute",
+    "free-llm",
+    "llm-routing",
     "design",
     "mcp",
     "nextjs",
