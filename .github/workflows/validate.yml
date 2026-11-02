@@ -13,6 +13,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: python3 scripts/validate.py
+      - name: skill health report
+        run: python3 scripts/skill_report.py --check --format markdown | tee -a "$GITHUB_STEP_SUMMARY"
       - name: token-meter smoke test
         run: python3 scripts/token-meter.py --help > /dev/null
 
