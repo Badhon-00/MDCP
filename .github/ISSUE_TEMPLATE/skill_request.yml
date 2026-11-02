@@ -1,0 +1,31 @@
+name: Skill or MCP request
+description: Suggest a skill, plugin or MCP server to add
+labels: [enhancement]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link to the project
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: Must be open (MIT, Apache-2.0, BSD). No license means it cannot be added.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What it adds
+      description: What can Claude do with it that the current skills do not cover?
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: It does not install hooks, start servers, or run remote code without clear documented consent
+          required: true

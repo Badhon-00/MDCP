@@ -1,0 +1,26 @@
+name: Bug or wrong instruction
+description: A skill or rule file is wrong, outdated, unsafe, or broken
+labels: [bug]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Skill or file
+      placeholder: skills/prisma-patterns/SKILL.md
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: What did it say or do, and what should it do instead? Link a source if you can.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: MDCP version and Claude Code version
+      placeholder: "mdcp 1.5.0, Claude Code 2.x"
+  - type: markdown
+    attributes:
+      value: For something exploitable, do not post it here. See SECURITY.md.
