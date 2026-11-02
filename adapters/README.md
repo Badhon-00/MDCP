@@ -1,14 +1,14 @@
 # Platform Adapters
 
-Adapters are small host-specific entry points. They should link to the portable project context and avoid duplicating the full documentation.
+Adapters are thin host-specific entry points. Read `MDCP_CONTEXT.md` first, then load only task-relevant skills.
 
-| Platform | Entry point | Setup |
+| Platform | File | Setup |
 |---|---|---|
-| Claude Code | `CLAUDE.md` | Keep the file at repository root; use the existing MDCP marketplace plugin |
-| OpenAI Codex | `AGENTS.md` | Codex reads repository agent instructions according to its documented discovery rules |
-| ChatGPT | `adapters/chatgpt/README.md` | Copy the concise instructions into a Project or Custom GPT; connect tools through supported settings |
-| Gemini | `adapters/gemini/GEMINI.md` | Add the instructions to the supported Gemini workspace or project |
-| Cursor | `adapters/cursor/.cursorrules` | Import into project rules; migrate to the current supported rules format if needed |
-| Windsurf | `adapters/windsurf/.windsurfrules` | Add as workspace rules where supported |
+| Claude Code | claude-code/CLAUDE.md | Existing marketplace plugin plus project instructions |
+| Codex | codex/AGENTS.md | Repository instruction discovery |
+| ChatGPT | chatgpt/README.md | Copy guidance into a Project or Custom GPT |
+| Gemini | gemini/GEMINI.md | Add to a supported workspace |
+| Cursor | cursor/.cursorrules | Import as project rules |
+| Windsurf | windsurf/.windsurfrules | Add as workspace rules |
 
-These files are starter templates. They do not install software, authenticate accounts, or guarantee that every host reads the same path. Verify each host's current documentation before relying on automatic discovery.
+These are templates, not auto-installers. Verify current host documentation and permissions.

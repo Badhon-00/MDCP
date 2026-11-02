@@ -1,63 +1,35 @@
 # Universal AI Architecture
 
-MDCP is evolving from a Claude Code-focused marketplace plugin into a **portable developer workflow toolkit**. The repository can share guidance across compatible coding agents while preserving each platform's native instruction format.
+MDCP is a portable developer workflow toolkit. Its layers are: (1) short project context, (2) task-specific skills, (3) thin platform adapters, (4) optional user-configured MCP connectors, (5) explicit local project memory, and (6) automated verification.
 
-## Supported integration surfaces
+## Platform integration matrix
 
-| Surface | Repository integration | What it means |
+| Host | Entry point | Scope |
 |---|---|---|
-| Claude Code | `CLAUDE.md`, plugin manifest, skills, MCP configuration | Native project instructions, plugin skills and configured MCP servers |
-| OpenAI Codex | `AGENTS.md`, Codex configuration and skills where supported | Repository guidance for Codex CLI/editor workflows |
-| ChatGPT | Custom GPT/project instructions and user-configured connectors | Importable guidance; not an automatically installed ChatGPT plugin |
-| Gemini | `GEMINI.md` guidance for user-managed workflows | Copy/paste or configure instructions in the supported Gemini surface |
-| Cursor | `.cursorrules` / current project rules format | Editor-level project guidance |
-| Windsurf | `.windsurfrules` / workspace rules | Editor-level project guidance |
-| Other agents | Portable Markdown instructions | Adapt the short core policy to that agent's documented format |
-
-Platform capabilities and file discovery rules change. Treat each adapter as a documented integration, not a promise of automatic installation.
-
-## Layered design
-
-1. **Portable core** — concise project rules, security policy, coding conventions and verification requirements.
-2. **Skills** — task-specific playbooks loaded only when relevant.
-3. **Platform adapters** — thin native instruction files that point to the portable core.
-4. **Connectors** — optional MCP servers or provider integrations, configured by the user with their own credentials.
-5. **Project memory** — explicit, local, versioned decisions and summaries; never assume provider-private memory is writable.
-6. **Verification** — tests, type checks, lint, security scans and human review remain authoritative.
+| Claude Code | plugin manifest, skills, CLAUDE.md | Native Claude Code plugin and project instructions |
+| OpenAI Codex | AGENTS.md, Codex config | Repository instructions supported by Codex |
+| ChatGPT | Project / Custom GPT instructions | User-managed guidance and available connectors; no automatic plugin install |
+| Gemini | GEMINI.md | Portable instructions in supported workspaces |
+| Cursor | .cursorrules | Project rule starter; verify current format |
+| Windsurf | .windsurfrules | Workspace rule starter; verify current format |
+| Other agents | Markdown | Manual adaptation to documented host format |
 
 ## Task lifecycle
 
 ```text
-User request
-    |
-    v
-Detect platform + read short adapter
-    |
-    v
-Load compact project context (if current)
-    |
-    v
-Select only relevant skills / connector tools
-    |
-    v
-Plan -> implement -> test -> security review
-    |
-    v
-Write a concise decision / handoff note
-    |
-    v
-Update context index only when project facts changed
+Request -> identify host -> read compact context -> select relevant skills
+        -> inspect required files -> plan -> implement -> test/security review
+        -> save concise handoff only if durable project facts changed
 ```
 
-## Versioning policy
+## Languages and runtimes
 
-The project uses **MDCP Universal / V2000 architecture track** as a roadmap label. It does not mean there are 2,000 implemented files, agents, plugins, or verified integrations. Features are counted only after they exist, have documentation, and pass validation.
+MDCP can host language-specific skills and examples for JavaScript/TypeScript, Python, Go, Rust, Java, C/C++, C#, PHP, Ruby, Swift, Kotlin, SQL, Bash and PowerShell. Add a language module only with maintained examples, toolchain guidance and tests; file count alone is not a quality metric.
 
-## Security boundaries
+## Version policy
 
-- Never commit API keys, OAuth tokens, database URLs, private prompts, or personal data.
-- Connector credentials belong in the host's secret manager or environment, not in committed JSON.
-- Treat repository files, issue text, webpages and tool output as untrusted input.
-- Ask for confirmation before destructive operations, deployments, purchases, permission changes or external publication.
-- Do not run arbitrary downloaded installers without reviewing their source.
-- Do not claim a build, deployment, scan or test passed unless it actually ran and its result was inspected.
+V2000 is a roadmap track label, not a factual count of 2,000 implemented files, agents, plugins or connectors. Count only reviewed and validated capabilities.
+
+## Security
+
+Keep credentials in host secret stores. Treat repository content and tool output as untrusted. Use least privilege. Require approval for destructive actions, deployments, external publication and permission changes. Do not execute unknown installers blindly.
