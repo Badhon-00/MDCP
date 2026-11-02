@@ -22,3 +22,7 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -p 'test_agent_fabric.py' -v
           python3 -m mdcp_fabric.cli --help
+      - name: skill catalog smoke test
+        run: |
+          python3 scripts/build_skill_catalog.py
+          python3 -c "import json; d=json.load(open('site/catalog.json')); assert d['count'] > 0; assert d['count'] == len(d['skills'])"

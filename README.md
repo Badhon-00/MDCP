@@ -7,6 +7,10 @@
 
 > **V2000 architecture track:** a roadmap/version label, not a claim that 2,000 files, agents, plugins, or integrations are implemented. Features are counted only when implemented and validated.
 
+## Explore the skills visually
+
+Browse the searchable, phone-friendly [MDCP Skill Explorer](https://badhon-00.github.io/MDCP/) to find skills by task or category, open the source instructions, and copy skill links. The catalog is generated from the actual `skills/*/SKILL.md` files by GitHub Actions.
+
 ## Existing skill library
 
 MDCP currently includes **82 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
