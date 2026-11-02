@@ -42,6 +42,8 @@ Use these when the task matches; they are bundled unmodified (see THIRD_PARTY_NO
 - Security and quality: security-review, security-scan, agent-security-hardening, mcp-dependency-review, tdd-workflow, verification-loop, coding-standards, e2e-testing, webapp-testing
 - Backend and data: api-design, backend-patterns, database-migrations, postgres-patterns, prisma-patterns, docker-patterns, deployment-patterns, mcp-builder
 - Frontend and UI/UX: frontend-patterns, frontend-a11y, nextjs-turbopack, web-design-guidelines (UI review), react-best-practices, composition-patterns, react-view-transitions
+- Design (Anthropic): frontend-design, canvas-design, algorithmic-art, brand-guidelines, theme-factory, web-artifacts-builder; ui-ux-pro-max (searchable palettes, fonts, styles, UX rules: `python3 scripts/search.py "<product> <style>" --design-system`)
+- Building skills and Claude API apps: skill-creator, claude-api
 - 3D (Three.js): threejs-fundamentals, threejs-geometry, threejs-materials, threejs-lighting, threejs-textures, threejs-animation, threejs-interaction, threejs-loaders, threejs-shaders, threejs-postprocessing, threejs-performance, threejs-asset-pipeline, threejs-react-three-fiber
 - MDCP own: mdcp-self-check (self-check, defense review, self-debug), mdcp-token-meter (session usage readout)
 - Cloning an app's features, clean-room (public sources only, rebrand before launch): replica-recon, replica-architect, replica-design, replica-build, replica-backend, replica-test, replica-diff, replica-entrepreneur, replica-brand, replica-launch, replica-deploy

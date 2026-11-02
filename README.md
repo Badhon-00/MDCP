@@ -1,6 +1,6 @@
 # MDCP: Master Developer Claude.ai Plugin
 
-One plugin: the `master-developer` skill (35 rule files on demand) plus 48 skills from ECC, awesome-claude-skills, replica-skill, Vercel agent-skills and threejs-skills, and two of its own (mdcp-self-check, mdcp-token-meter). See THIRD_PARTY_NOTICES.md.
+One plugin: the `master-developer` skill (35 rule files on demand) plus 59 more skills from ECC, awesome-claude-skills, replica-skill, Vercel agent-skills, threejs-skills, Anthropic skills and UI/UX Pro Max, and two of its own (mdcp-self-check, mdcp-token-meter). MCP server setup is in `mcp/`. See THIRD_PARTY_NOTICES.md.
 
 ## Layout
 ```

@@ -1,8 +1,19 @@
 {
   "name": "mdcp",
-  "version": "1.2.0",
-  "description": "Master Developer Claude.ai Plugin: master-developer skill (rules on demand) plus 50 more skills: security, testing, backend, UI/UX, Three.js, clean-room app cloning, self-check and a token meter.",
-  "author": { "name": "Badhon-00" },
-  "license": "See THIRD_PARTY_NOTICES.md",
-  "keywords": ["nextjs", "typescript", "security", "owasp", "prisma", "threejs", "testing"]
+  "version": "1.3.0",
+  "description": "Master Developer Claude.ai Plugin: master-developer skill (rules on demand) plus 59 more skills: security, testing, backend, UI/UX and design, Three.js, clean-room app cloning, self-check and a token meter.",
+  "author": {
+    "name": "Badhon-00"
+  },
+  "license": "MIT (this repo); bundled skills keep their own licenses, see THIRD_PARTY_NOTICES.md",
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "security",
+    "owasp",
+    "prisma",
+    "threejs",
+    "testing"
+  ],
+  "repository": "https://github.com/Badhon-00/MDCP"
 }
