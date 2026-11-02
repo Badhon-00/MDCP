@@ -1,0 +1,3 @@
+# MDCP Cursor Project Rules
+
+Read MDCP_CONTEXT.md first when it is available. Follow the nearest project-specific instructions. Load only relevant skills and files. Preserve existing architecture and licenses. Never expose secrets. Use configured connectors only when available and authorized. Run relevant tests and report actual outcomes. For durable project decisions, create a concise sanitized handoff note; do not assume the editor has provider-wide persistent memory.
