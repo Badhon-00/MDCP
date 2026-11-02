@@ -1,0 +1,1 @@
+Use MDCP_CONTEXT.md as the project brief. Inspect only files needed. Load the smallest relevant skill set. Verify APIs against official documentation. Do not assume connectors, credentials, shell permissions or persistent memory. Test changes and report unverified work honestly.

@@ -1,0 +1,1 @@
+Read MDCP_CONTEXT.md when available. Follow nearest project instructions. Inspect only required files and skills. Preserve architecture and licenses. Never expose secrets. Use configured connectors only when authorized. Run relevant tests and report actual outcomes. Do not assume provider-wide persistent memory.

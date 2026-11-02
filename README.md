@@ -1,70 +1,136 @@
-# MDCP: Master Developer Claude Plugin
+# MDCP — Master Developer Claude Plugin
 
-[![validate](https://github.com/Badhon-00/MDCP/actions/workflows/validate.yml/badge.svg)](https://github.com/Badhon-00/MDCP/actions/workflows/validate.yml)
+[![Validate](https://github.com/Badhon-00/MDCP/actions/workflows/validate.yml/badge.svg)](https://github.com/Badhon-00/MDCP/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-One plugin for Claude Code with **82 skills** for building, securing, testing and shipping web software: a core `master-developer` skill with 35 on-demand rule files, a Claude-Code token meter, and a curated set of open-source skills for design, Three.js, backend, workflow and plugin/MCP development. Every bundled skill keeps its original license and is credited in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+**A modular developer toolkit for coding agents.** MDCP combines curated skills, platform-specific instruction adapters, optional MCP connector guidance, and a local project-memory utility designed to reduce repeated context preparation.
 
-## Install
+> **V2000 architecture track:** a roadmap/version label, not a claim that 2,000 files, agents, plugins, or integrations are implemented. Features are counted only when implemented and validated.
 
-In Claude Code:
+## Existing skill library
 
-```
-/plugin marketplace add Badhon-00/MDCP
-/plugin install mdcp@mdcp-marketplace
-```
+MDCP currently includes **82 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
 
-Only want a few skills? Copy the folders you need from `skills/` into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/`. Each skill is self-contained.
+## Platform coverage
 
-## What is inside
+| Platform | Included guidance | Important boundary |
+|---|---|---|
+| Claude Code | Existing marketplace plugin and Claude adapter | Native plugin/skill installation |
+| OpenAI Codex | `AGENTS.md` and Codex adapter | Host must support the documented instruction discovery |
+| ChatGPT | Project / Custom GPT setup guide | Not an automatically installed ChatGPT plugin |
+| Gemini | Portable `GEMINI.md` adapter | Add to a supported workspace manually |
+| Cursor | `.cursorrules` starter | Follow current Cursor rules support |
+| Windsurf | `.windsurfrules` starter | Follow current Windsurf rules support |
+| Other agents | Portable Markdown context | Adapt to the host's own format |
 
-| Area | Skills |
-|---|---|
-| Core (3) | `master-developer` (rules, security, API, DB, UI, testing, deploy; opens only the file a task needs), `mdcp-self-check` (checks before "done", defense review, self-debug), `mdcp-token-meter` |
-| Security and quality (9) | `security-review`, `security-scan`, `agent-security-hardening`, `mcp-dependency-review`, `tdd-workflow`, `verification-loop`, `coding-standards`, `e2e-testing`, `webapp-testing` |
-| Backend and data (7) | `api-design`, `backend-patterns`, `database-migrations`, `postgres-patterns`, `prisma-patterns`, `docker-patterns`, `deployment-patterns` |
-| Frontend (7) | `frontend-patterns`, `frontend-a11y`, `nextjs-turbopack`, `web-design-guidelines`, `react-best-practices`, `composition-patterns`, `react-view-transitions` |
-| Design (7) | `frontend-design`, `ui-ux-pro-max` (searchable palettes, fonts, styles, UX rules), `canvas-design`, `algorithmic-art`, `brand-guidelines`, `theme-factory`, `web-artifacts-builder` |
-| Three.js (13) | fundamentals, geometry, materials, lighting, textures, animation, interaction, loaders, shaders, postprocessing, performance, asset pipeline, react-three-fiber |
-| Workflow (11) | `writing-plans`, `executing-plans`, `systematic-debugging`, `test-driven-development`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `dispatching-parallel-agents`, `using-git-worktrees`, `subagent-driven-development` |
-| Clean-room app cloning (11) | `replica-recon` to `replica-deploy`: study an app's features from public sources, rebuild them from scratch, rebrand before launch |
-| Build your own (14) | `skill-creator`, `plugin-structure`, `skill-development`, `command-development`, `agent-development`, `hook-development`, `plugin-settings`, `mcp-integration`, `build-mcp-server`, `build-mcpb`, `build-mcp-app`, `mcp-builder`, `claude-md-improver`, `claude-api` |
+See [platform adapters](adapters/README.md) and the [universal architecture](docs/UNIVERSAL_AI_ARCHITECTURE.md).
 
-Also in the repo: [`mcp/`](mcp/README.md) (setup for Context7, Supabase, Figma, Playwright, with what was verified) and [`scripts/token-meter.py`](scripts/token-meter.py).
+## Token efficiency and project memory
 
-## Examples
+LLM inference is not free and MDCP cannot guarantee zero token consumption or a fixed 80–90% reduction. It helps avoid unnecessary repeated reads by creating a small, bounded project-context pack and storing explicit decisions locally.
 
-- "Review this PR for security problems" loads `security-review` and `master-developer`'s OWASP Top 10:2025 checklist.
-- "Add a Prisma model and an API route" loads `prisma-patterns`, `api-design` and the Next.js data-access rules.
-- "Make a 3D hero section" loads the Three.js skills and `frontend-design`.
-- "Why does this test fail?" loads `systematic-debugging`.
-
-Skills load by their description, so a request that matches one is enough. You do not need to name it.
-
-## Token meter
+### Quick start
 
 ```bash
-python3 scripts/token-meter.py              # context in use, output tokens, cache counts
-python3 scripts/token-meter.py --statusline # one line for the Claude Code status bar
+# Build a compact context pack (stdout)
+python3 tools/mdcp_memory.py pack --root . --max-chars 12000
+
+# Save a project decision locally
+python3 tools/mdcp_memory.py remember "API versioning" "Use /v1 routes for public endpoints."
+
+# Search saved decisions
+python3 tools/mdcp_memory.py search "API"
+
+# Export or delete a memory
+python3 tools/mdcp_memory.py export
+python3 tools/mdcp_memory.py forget 1
 ```
 
-It reads the Claude Code session transcript. It shows session context, not plan quota (use `/usage` for that), and it does not see claude.ai web chats.
+The database lives in `.mdcp/memory.sqlite3` and is ignored by Git by default. The utility does **not** write to ChatGPT Memory, Claude memory, Codex session memory, or any provider-private storage. Feed the generated context pack to the agent or configure the host to load it. Read [Token Efficiency & Memory](docs/TOKEN_EFFICIENCY_AND_MEMORY.md).
 
-## How this repo is run
+## Free and local LLM routing (OmniRoute + Ollama)
 
-- **Curated, not copied blind.** Skills come from open-source projects, listed with license and what was left out and why. Hooks and anything that starts a local server or runs code unprompted are not bundled.
-- **Checked on every push.** `scripts/validate.py` (run by CI) verifies JSON manifests, frontmatter, unique skill names and credits. It checks structure; it does not prove a skill behaves well. Third-party skills are not security audited. Read a skill before relying on it.
-- **Rules guide, tests enforce.** The rule files shape how Claude works. Your build, type checker, tests and scanners decide whether code is right.
-- **More skills are not always better.** Each skill's description is loaded into context. If you only build Next.js apps, copy only what you use.
+MDCP includes an integration pack for [OmniRoute](https://github.com/akoeraste/omniroute), a separately maintained open-source AI gateway. It provides one local OpenAI-compatible endpoint, provider/model routing, and fallback according to the providers and accounts you configure. MDCP does not vendor or claim ownership of OmniRoute.
+
+- **Local/private:** Ollama serves models on your own machine. No hosted API quota, but inference is limited by your hardware, memory and electricity.
+- **Free hosted tiers:** connect eligible providers such as Gemini API, Groq, Cerebras, Cloudflare Workers AI, NVIDIA NIM, Hugging Face or OpenRouter free models where currently offered. Each provider controls its own quotas, regions, eligibility, model access and terms.
+- **Routing:** OmniRoute can route compatible coding CLIs through one local gateway and use configured fallback candidates when supported.
+- **Claude Code + Codex CLI:** use OmniRoute's documented CLI launch/configuration commands. Do not replace your existing provider credentials or config blindly.
+- **Claude.ai and ChatGPT web apps:** skills/instructions can be reused there, but those hosted chat interfaces do not become OmniRoute clients merely by installing this repository. A supported API/action or compatible client is required.
+
+### Quick start
+
+```bash
+# Install the upstream gateway (review its docs and release first)
+npm install -g omniroute
+omniroute
+
+# Open http://localhost:20128, connect providers you are eligible to use,
+# and copy the gateway API key from Dashboard -> Endpoints.
+
+# Launch compatible coding CLIs through the gateway
+omniroute run claude --model auto/coding
+omniroute run codex --model auto/coding
+
+# Or use the upstream guided configuration
+omniroute configure claude
+omniroute configure codex
+
+# Optional: connect the local Ollama service in OmniRoute's Providers UI.
+# Install Ollama separately, start it, and pull a model that fits your hardware.
+ollama serve
+ollama pull qwen2.5-coder:7b
+```
+
+See [OmniRoute + Ollama integration guide](integrations/omniroute/README.md), [free provider notes](integrations/omniroute/FREE_PROVIDERS.md), and the reusable [OmniRoute routing skill](skills/omniroute-free-llm-routing/SKILL.md).
+
+**No unlimited hosted usage promise:** free tiers are rate-limited and can change or disappear. MDCP does not bypass quotas, rotate accounts to evade limits, or guarantee a zero-cost route. For genuinely uncapped local usage, run Ollama locally subject to hardware constraints.
+
+## Connectors and MCP
+
+MDCP documents optional connector categories including source control, documentation, databases, design, browser testing, deployment, observability and team workflows. Connectors must be installed and authenticated in the host environment. Availability varies by provider and account.
+
+Start with [connector safety and setup](connectors/README.md). Never commit API keys or tokens. Use least-privilege credentials and require approval for destructive or externally visible actions.
+
+## Repository map
+
+```text
+MDCP/
+├── skills/                 # Curated task-specific skill library
+├── plugins/                # Plugin resources
+├── mcp/                    # Existing MCP setup notes
+├── adapters/               # Claude, Codex, ChatGPT, Gemini, Cursor, Windsurf
+├── connectors/             # Connector guidance and safe example config
+├── docs/                   # Architecture and memory documentation
+├── tools/                  # Local context/memory utilities
+├── tests/                  # Utility tests
+├── MDCP_CONTEXT.md         # Short portable project brief
+├── AGENTS.md               # Repository agent instructions
+└── README.md
+```
+
+## Quality and security
+
+- Curated skills retain their upstream licenses and attribution.
+- Validate repository metadata with `python3 scripts/validate.py`.
+- Run memory utility tests with `python3 -m unittest tests/test_mdcp_memory.py`.
+- Third-party skills and MCP servers are not automatically security-audited. Review before use.
+- Rules guide agents; tests, type checkers, scanners and human review determine whether changes are correct.
+
+## Roadmap
+
+- [x] Portable project context and agent adapters
+- [x] Local SQLite decision memory and bounded context packer
+- [x] Connector setup and least-privilege guidance
+- [ ] Verified integration tests for each host version
+- [ ] Optional memory indexing and semantic retrieval
+- [ ] Expanded language-specific skills based on tested demand
+- [ ] CI coverage for all utilities and supported runtimes
 
 ## Contributing
 
-Issues and pull requests are welcome: a bug in a rule, an outdated command, a missing skill, a license problem. See [CONTRIBUTING.md](CONTRIBUTING.md). Security reports go through [SECURITY.md](SECURITY.md).
-
-```bash
-python3 scripts/validate.py   # run before opening a PR
-```
+Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), run the validator, and include tests for behavior changes. Security reports: [SECURITY.md](SECURITY.md).
 
 ## License
 
-MIT for this repository's own files ([LICENSE](LICENSE)). Bundled skills are under their own licenses (MIT or Apache-2.0); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`licenses/`](licenses/).
+MIT for MDCP's original files. Bundled skills retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [licenses/](licenses/).
