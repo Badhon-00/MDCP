@@ -1,4 +1,5 @@
 name: Publish MDCP Skill Explorer
+
 on:
   push:
     branches: [main]
@@ -6,34 +7,73 @@ on:
       - "skills/**/SKILL.md"
       - "scripts/build_skill_catalog.py"
       - "site/**"
+      - "README.md"
+      - "LICENSE"
+      - "TRADEMARKS.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+          token: ${{ secrets.PAGES_TOKEN || github.token }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Build searchable skill catalog
         run: python3 scripts/build_skill_catalog.py
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Validate generated site
+        run: |
+          test -s site/index.html
+          test -s site/catalog.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          catalog = json.loads(Path("site/catalog.json").read_text(encoding="utf-8"))
+          assert isinstance(catalog.get("skills"), list), "catalog.skills must be a list"
+          assert catalog.get("count") == len(catalog["skills"]), "catalog count mismatch"
+          assert catalog["count"] > 0, "catalog is empty"
+          html = Path("site/index.html").read_text(encoding="utf-8")
+          for required in ('id="search"', 'id="grid"', 'catalog.json', 'MDCP'):
+              assert required in html, f"missing site element: {required}"
+          print(f"Validated {catalog['count']} skills and site entry point")
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
           path: site
+
   deploy:
-    environment:
-      name: github-pages
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
