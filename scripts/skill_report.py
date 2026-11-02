@@ -35,7 +35,7 @@ def inspect(folder):
         if not row["name"]:
             row["errors"].append("Missing frontmatter name")
         elif row["name"] != folder.name:
-            row["errors"].append("Frontmatter name does not match folder")
+            row["warnings"].append("Frontmatter name differs from folder; preserve upstream skill identity")
         if len(description) < 30:
             row["errors"].append("Description is missing or shorter than 30 characters")
         if len(body.strip()) < 120:
