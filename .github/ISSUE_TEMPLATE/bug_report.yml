@@ -1,49 +1,26 @@
-name: Bug report
-description: Report a reproducible problem with MDCP
-title: "[Bug]: "
-labels: ["bug"]
+name: Bug or wrong instruction
+description: A skill or rule file is wrong, outdated, unsafe, or broken
+labels: [bug]
 body:
+  - type: input
+    id: where
+    attributes:
+      label: Skill or file
+      placeholder: skills/prisma-patterns/SKILL.md
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: What did it say or do, and what should it do instead? Link a source if you can.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: MDCP version and Claude Code version
+      placeholder: "mdcp 1.5.0, Claude Code 2.x"
   - type: markdown
     attributes:
-      value: "Please search existing issues first. Never include API keys, tokens, private URLs, or personal data."
-  - type: input
-    id: host
-    attributes:
-      label: Host and version
-      description: Claude Code, Codex, ChatGPT workflow, or other host and exact version.
-      placeholder: "Codex CLI x.y.z"
-    validations:
-      required: true
-  - type: input
-    id: os
-    attributes:
-      label: Operating system
-      placeholder: "Ubuntu 24.04 / Windows 11 / macOS ..."
-    validations:
-      required: true
-  - type: textarea
-    id: steps
-    attributes:
-      label: Steps to reproduce
-      description: Exact commands and steps, with secrets removed.
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected behavior
-    validations:
-      required: true
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual behavior
-    validations:
-      required: true
-  - type: textarea
-    id: logs
-    attributes:
-      label: Redacted logs
-      description: Remove credentials, user data, and private paths before posting.
-    validations:
-      required: false
+      value: For something exploitable, do not post it here. See SECURITY.md.
