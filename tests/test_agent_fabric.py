@@ -1,6 +1,6 @@
 import tempfile, unittest
 from pathlib import Path
-from mdcp_fabric.core import context_pack, inventory, MAX_WORKERS, redact_secrets
+from mdcp_fabric.core import context_pack, inventory, MAX_WORKERS, redact_secrets, _check_base_url
 class FabricTests(unittest.TestCase):
  def test_worker_ceiling(self): self.assertEqual(MAX_WORKERS,64)
  def test_skips_secrets_and_vendor(self):
@@ -15,4 +15,8 @@ class FabricTests(unittest.TestCase):
  def test_secret_redaction(self):
   v=redact_secrets("API_KEY=supersecret Bearer abcdefghijklmnopqrstuvwxyz")
   self.assertNotIn("supersecret",v); self.assertNotIn("abcdefghijklmnopqrstuvwxyz",v)
+ def test_base_url_requires_https(self):
+  _check_base_url("https://api.example.com/v1"); _check_base_url("http://localhost:11434/v1")
+  for bad in ("http://api.example.com/v1","ftp://x","api.example.com"):
+   with self.assertRaises(ValueError): _check_base_url(bad)
 if __name__=="__main__": unittest.main()

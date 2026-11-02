@@ -1,6 +1,6 @@
 {
   "name": "mdcp",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "MDCP Universal Developer Plugin: portable skills, specialist Claude Code agents, bounded parallel repository analysis, OmniRoute/Ollama guidance, security, testing and token-aware context.",
   "author": {
     "name": "Badhon-00"

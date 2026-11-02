@@ -77,7 +77,14 @@ def search_repositories(queries, limit=30, workers=8):
     repos.sort(key=lambda x:(x["stars"],x["updated_at"] or ""),reverse=True)
     return repos[:limit],[v for k,v in results.items() if k.startswith("error:")]
 
+def _check_base_url(base_url):
+    u=urllib.parse.urlsplit(base_url)
+    local=u.hostname in {"localhost","127.0.0.1","::1"}
+    if u.scheme!="https" and not (u.scheme=="http" and local):
+        raise ValueError("MDCP_LLM_BASE_URL must use https (plain http is allowed only for localhost): your API key and code would be sent unencrypted.")
+
 def _chat_completion(base_url, api_key, model, system, user, timeout=90):
+    _check_base_url(base_url)
     url=base_url.rstrip("/")+"/chat/completions"
     payload={"model":model,"temperature":0.1,"max_tokens":1400,"messages":[{"role":"system","content":system},{"role":"user","content":user}]}
     data=json.dumps(payload).encode()

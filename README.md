@@ -157,6 +157,7 @@ MDCP/
 ├── connectors/             # Connector guidance and safe example config
 ├── docs/                   # Architecture and memory documentation
 ├── tools/                  # Local context/memory utilities
+├── scripts/                # Validator, skill report, token meter, GitHub backup
 ├── tests/                  # Utility tests
 ├── MDCP_CONTEXT.md         # Short portable project brief
 ├── AGENTS.md               # Repository agent instructions
@@ -182,6 +183,18 @@ The report runs in CI and appears in the GitHub Actions job summary. It checks d
 - Run memory utility tests with `python3 -m unittest tests/test_mdcp_memory.py`.
 - Third-party skills and MCP servers are not automatically security-audited. Review before use.
 - Rules guide agents; tests, type checkers, scanners and human review determine whether changes are correct.
+
+## Back up your whole GitHub account
+
+`scripts/github_backup.py` mirrors every repository you own, public and private, archived included, with issues, pull requests, comments, releases, wikis and gists. It verifies each backup, never writes your token to disk, and fails loudly if the repository count is not what you expect.
+
+```bash
+export GITHUB_TOKEN=...                                   # read-only token, see the guide
+python3 scripts/github_backup.py --list-only --expect 114  # check the count first
+python3 scripts/github_backup.py --out ~/github-backup --expect 114 --gists
+```
+
+Full steps, restore, encryption and off-site storage: [docs/GITHUB_BACKUP.md](docs/GITHUB_BACKUP.md). Getting your own domain and what you can and cannot own: [docs/DOMAIN_AND_OWNERSHIP.md](docs/DOMAIN_AND_OWNERSHIP.md).
 
 ## Roadmap
 

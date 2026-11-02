@@ -8,8 +8,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: python3 scripts/validate.py
@@ -20,7 +20,7 @@ jobs:
 
       - name: agent fabric unit tests
         run: |
-          python3 -m unittest discover -s tests -p 'test_agent_fabric.py' -v
+          python3 -m unittest discover -s tests -v
           python3 -m mdcp_fabric.cli --help
       - name: skill catalog smoke test
         run: |

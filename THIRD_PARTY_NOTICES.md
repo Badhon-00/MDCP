@@ -16,3 +16,7 @@ MDCP bundles skills copied unmodified from these open-source projects. Each keep
 | REA, https://github.com/morluto/rea (copy: Badhon-00/Reverse-engine) | MIT | Not bundled. Only a pointer and usage rules in `skills/master-developer/references/reverse-engineering.md`. |
 
 Skills are used as published. Their rules, including replica-skill's clean-room and rebrand-before-launch limits, stay in force.
+
+## Original to this repository
+
+`master-developer`, `mdcp-self-check`, `mdcp-token-meter` and `omniroute-free-llm-routing` are written for MDCP and covered by this repository's MIT license. OmniRoute and Ollama are separate projects with their own licenses; they are not bundled, only configured.

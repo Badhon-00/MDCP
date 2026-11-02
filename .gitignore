@@ -23,3 +23,6 @@ bin-release/
 node_modules/
 .DS_Store
 __pycache__/
+
+# generated in CI by scripts/build_skill_catalog.py
+site/catalog.json
