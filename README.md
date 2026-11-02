@@ -197,6 +197,16 @@ The report runs in CI and appears in the GitHub Actions job summary. It checks d
 
 Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), run the validator, and include tests for behavior changes. Security reports: [SECURITY.md](SECURITY.md).
 
+## Copyright, ownership & brand
+
+Original MDCP project code, documentation and project-created branding are attributed to **Badhon-00 (BADHON)** under the MIT License, subject to the third-party materials and licenses listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The MIT software license does not grant permission to impersonate the official project or use its brand as your own. See [TRADEMARKS.md](TRADEMARKS.md) for the project ownership and trademark notice. No trademark-registration claim is made.
+
+## Website publishing
+
+The Skill Explorer is built from `skills/*/SKILL.md` and deployed through GitHub Actions. In **Settings → Pages**, select **GitHub Actions** as the publishing source. If Pages is not yet enabled, the workflow can attempt to enable it using a repository secret named `PAGES_TOKEN`: a fine-grained token with repository **Administration: write** and **Pages: write** permissions (or a classic token with the required repository scope). Add it under **Settings → Secrets and variables → Actions**. Do not put the token in a committed file. If Pages is already enabled, the workflow can use the normal GitHub Actions token.
+
+Default project URL: https://badhon-00.github.io/MDCP/
+
 ## License
 
 MIT for MDCP's original files. Bundled skills retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [licenses/](licenses/).
