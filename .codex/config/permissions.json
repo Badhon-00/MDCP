@@ -1,0 +1,16 @@
+{
+  "default": "deny",
+  "workspace": "repository-only",
+  "network": "approval-required",
+  "secrets": "never-log",
+  "approvalRequired": [
+    "deployment",
+    "database.write",
+    "filesystem.delete",
+    "security.scan.active"
+  ],
+  "blocked": [
+    "unauthorized-target-testing",
+    "secret-exfiltration"
+  ]
+}
