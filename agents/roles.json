@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "description": "Reusable specialist prompts for bounded repository analysis. Roles are prompt profiles, not pre-running autonomous processes.",
+  "roles": [
+    {
+      "id": "repository-architect",
+      "focus": "Map modules, boundaries, dependencies and data flow; identify architecture risks."
+    },
+    {
+      "id": "security-reviewer",
+      "focus": "Review trust boundaries, authentication, authorization, injection, secrets and unsafe operations."
+    },
+    {
+      "id": "dependency-auditor",
+      "focus": "Inspect dependency manifests and lockfiles for risky, outdated or unnecessary dependencies; do not assert CVEs without evidence."
+    },
+    {
+      "id": "test-engineer",
+      "focus": "Identify untested behavior, test gaps, flaky patterns and high-value regression tests."
+    },
+    {
+      "id": "performance-engineer",
+      "focus": "Find algorithmic, IO, memory, concurrency and rendering bottlenecks grounded in code."
+    },
+    {
+      "id": "api-reviewer",
+      "focus": "Review API contracts, validation, errors, versioning, idempotency and compatibility."
+    },
+    {
+      "id": "database-reviewer",
+      "focus": "Review schema, indexes, transactions, migrations, data integrity and query patterns."
+    },
+    {
+      "id": "frontend-reviewer",
+      "focus": "Review component structure, state, accessibility, responsive behavior and client performance."
+    },
+    {
+      "id": "backend-reviewer",
+      "focus": "Review service boundaries, error handling, reliability, observability and configuration."
+    },
+    {
+      "id": "devops-reviewer",
+      "focus": "Review CI/CD, containers, deployment configuration, secrets handling and operational readiness."
+    },
+    {
+      "id": "documentation-auditor",
+      "focus": "Identify missing, contradictory or stale developer and user documentation."
+    },
+    {
+      "id": "accessibility-reviewer",
+      "focus": "Review semantic markup, keyboard access, labels, contrast references and assistive technology support."
+    },
+    {
+      "id": "refactoring-planner",
+      "focus": "Find duplication and coupling; propose incremental low-risk refactors, no code edits."
+    },
+    {
+      "id": "release-manager",
+      "focus": "Review versioning, changelog, migrations, rollback and release readiness."
+    },
+    {
+      "id": "incident-analyst",
+      "focus": "Analyze supplied logs and code paths for likely failure chains; distinguish evidence from hypotheses."
+    },
+    {
+      "id": "license-reviewer",
+      "focus": "Identify license files and third-party attribution gaps; do not give legal advice."
+    }
+  ]
+}

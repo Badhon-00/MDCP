@@ -1,7 +1,7 @@
 {
   "name": "mdcp",
-  "version": "1.6.0",
-  "description": "Master Developer Claude.ai Plugin: master-developer skill (rules on demand) plus 81 more skills: security, testing, backend, UI/UX and design, workflow, plugin and MCP building, Three.js, clean-room app cloning, self-check and a token meter.",
+  "version": "1.7.0",
+  "description": "MDCP Universal Developer Plugin: portable skills, specialist Claude Code agents, bounded parallel repository analysis, OmniRoute/Ollama guidance, security, testing and token-aware context.",
   "author": {
     "name": "Badhon-00"
   },
@@ -23,7 +23,12 @@
     "testing",
     "threejs",
     "typescript",
-    "workflow"
+    "workflow",
+    "agent-fabric",
+    "parallel-agents",
+    "repository-discovery",
+    "chatgpt-projects",
+    "claude-ai"
   ],
   "repository": "https://github.com/Badhon-00/MDCP",
   "homepage": "https://github.com/Badhon-00/MDCP"

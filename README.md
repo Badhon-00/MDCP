@@ -86,6 +86,54 @@ See [OmniRoute + Ollama integration guide](integrations/omniroute/README.md), [f
 
 **No unlimited hosted usage promise:** free tiers are rate-limited and can change or disappear. MDCP does not bypass quotas, rotate accounts to evade limits, or guarantee a zero-cost route. For genuinely uncapped local usage, run Ollama locally subject to hardware constraints.
 
+
+## Universal Agent Fabric — Claude, ChatGPT and Codex
+
+MDCP now includes a portable skill package and an **opt-in agent-fabric CLI** for multi-repository discovery and parallel model-assisted analysis.
+
+### Cross-platform skill installation
+
+- **Claude Code:** use the existing MDCP marketplace plugin; the new skills live under `skills/` and are also mirrored to `.agents/skills/` for portable agent discovery.
+- **Claude.ai:** import the skill Markdown files or the packaged skill directory into a Project/Custom workflow where file-based instructions are supported. Claude.ai does not install a Claude Code plugin.
+- **Codex CLI:** reads the repository's `AGENTS.md` and can use the portable `.agents/skills/` material as task guidance.
+- **ChatGPT:** import the skill Markdown or ZIP into a Project/custom GPT knowledge/instructions where supported. ChatGPT does not load a Claude Code marketplace plugin directly.
+- **OmniRoute:** routes compatible API/CLI clients to providers you configured. It cannot transparently replace the hosted Claude.ai or ChatGPT model backends.
+
+See [cross-platform installation](docs/CROSS_PLATFORM_SKILLS.md).
+
+### Agent fabric: repository discovery and parallel analysis
+
+```bash
+# Search public GitHub repositories (max 64 concurrent search requests)
+python3 -m pip install -e ".[dev]"
+mdcp-fabric search "mcp server" "agent framework" --limit 30 --workers 16
+
+# Run specialist agents against a local repository through an OpenAI-compatible API
+export MDCP_LLM_BASE_URL="http://localhost:20128/v1"
+export MDCP_LLM_API_KEY="your-local-gateway-key"
+export MDCP_LLM_MODEL="your-configured-model"
+mdcp-fabric analyze . --agents 8 --max-parallel 8
+
+# Increase to 64 only if your gateway/provider capacity allows it
+mdcp-fabric analyze . --agents 64 --max-parallel 64 --max-files 100
+```
+
+The runner has a hard ceiling of 64 concurrent workers, defaults to 8, uses bounded file excerpts, and returns structured findings. Repository search uses GitHub's public Search API and obeys API rate limits. Model analysis requires a compatible endpoint and can incur provider costs. The number of configured specialist profiles is not the same as the number of simultaneously running model sessions.
+
+### Token-aware project context
+
+Use `mdcp-fabric context . --max-chars 12000` to create a bounded context bundle. The fabric avoids sending irrelevant files, excludes common generated/vendor paths, and records file hashes in a local cache. A cache hit means the file summary can be reused locally; it does not mean the model has permanent provider-side memory or that tokens are free.
+
+Token savings vary by repository and provider. MDCP does not claim a guaranteed 90% reduction. See [agent fabric architecture](docs/AGENT_FABRIC.md) and [token measurement](docs/TOKEN_EFFICIENCY_AND_MEMORY.md).
+
+### Visual architecture
+
+![MDCP Universal Agent Fabric architecture](docs/assets/agent-fabric-architecture.svg)
+
+### Included specialist skills
+
+Repository discovery, architecture mapping, security review, performance profiling, test planning, documentation, dependency auditing, API design, database review, frontend review, backend review, DevOps, accessibility, refactoring, incident triage and release verification. Skills are portable Markdown playbooks; execution depends on the host's available tools.
+
 ## Connectors and MCP
 
 MDCP documents optional connector categories including source control, documentation, databases, design, browser testing, deployment, observability and team workflows. Connectors must be installed and authenticated in the host environment. Availability varies by provider and account.
