@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Report a security problem
-    url: https://github.com/Badhon-00/MDCP/security/advisories/new
-    about: Private reporting for anything exploitable
+  - name: Questions and community help
+    url: https://github.com/Badhon-00/MDCP/discussions
+    about: Ask setup and usage questions in Discussions (enable Discussions in repository settings first).
+  - name: Security vulnerability
+    url: https://github.com/Badhon-00/MDCP/blob/main/SECURITY.md
+    about: Report security issues privately using the security policy.
