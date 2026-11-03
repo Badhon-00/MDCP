@@ -227,3 +227,13 @@ Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md), r
 ## License
 
 MIT for MDCP's original files. Bundled skills retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [licenses/](licenses/).
+
+
+## Repository and website separation
+
+MDCP remains the core skills, adapters, MCP guidance and tooling repository. The public website is planned as a separate project, **[MDCP-SITE](https://github.com/Badhon-00/MDCP-SITE)**, hosted on Cloudflare Pages. The new repository and Cloudflare deployment must be created and verified before this link is treated as a live site.
+
+- [Upstream AI repository audit and integration policy](docs/UPSTREAM_AI_REPOSITORY_AUDIT.md)
+- [Website separation and Cloudflare Pages migration plan](docs/WEBSITE_SEPARATION_CLOUDFLARE_MIGRATION.md)
+
+Third-party repositories are tracked as integration candidates, not automatically vendored. Their exact licenses, attribution, dependency security and compatibility must be reviewed before importing code or skills.
