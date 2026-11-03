@@ -76,7 +76,7 @@ class RuntimeTests(unittest.TestCase):
             root = Path(tmp)
             skill = root / "skills" / "python-testing"
             skill.mkdir(parents=True)
-            (skill / "SKILL.md").write_text('---\\nname: python-testing\\ndescription: Write reliable Python unit tests\\n---\\n# Tests\\nUse unittest and assert behavior.\\n', encoding="utf-8")
+            (skill / "SKILL.md").write_text('---\nname: python-testing\ndescription: Write reliable Python unit tests\n---\n# Tests\nUse unittest and assert behavior.\n', encoding="utf-8")
             rows = discover_skills(root, "python test")
             self.assertEqual(rows[0]["name"], "python-testing")
             self.assertIn("Use unittest", skill_context(root, "python test"))
