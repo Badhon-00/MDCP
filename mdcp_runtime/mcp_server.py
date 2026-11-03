@@ -22,7 +22,7 @@ repo_root = Path(os.getenv("MDCP_REPO_ROOT", Path.cwd())).expanduser().resolve()
 def mdcp_task_start(task: str, context: str = "") -> dict:
     """Start a durable API-backed task. It continues while this MCP server stays running."""
     selected_skills = skill_context(repo_root, task)
-    combined_context = "\\n\\n".join(part for part in (context, selected_skills) if part)
+    combined_context = "\n\n".join(part for part in (context, selected_skills) if part)
     task_id = runner.submit(task, combined_context)
     return {
         "task_id": task_id,
