@@ -184,6 +184,22 @@ The report runs in CI and appears in the GitHub Actions job summary. It checks d
 - Third-party skills and MCP servers are not automatically security-audited. Review before use.
 - Rules guide agents; tests, type checkers, scanners and human review determine whether changes are correct.
 
+## Independent GitHub account backup
+
+Use the local backup tool to mirror repositories you own, including private and archived repositories, and preserve branches, tags, available pull-request refs, bundles and issue/PR metadata. It must run on a device you control—not inside Actions in the same GitHub account.
+
+```bash
+export GITHUB_TOKEN='YOUR_READ_ONLY_TOKEN'
+python3 scripts/github_backup.py --list-only --expect 114
+python3 scripts/github_backup.py --out ~/github-backup --expect 114 --gists
+```
+
+The expected count is a check, not a verified count until the authenticated listing completes. Read [the backup and restore guide](docs/GITHUB_BACKUP.md) for token permissions, restore tests, encryption and the data that GitHub does not expose for export.
+
+## Copyright, brand and custom domain
+
+See [TRADEMARKS.md](TRADEMARKS.md) for attribution and third-party boundaries, and [the custom-domain guide](docs/DOMAIN_AND_OWNERSHIP.md) for account-level domain verification, DNS and GitHub Pages setup. A domain registration or trademark filing must be completed in your own registrar/DPDT account; repository documentation does not register it for you.
+
 ## Roadmap
 
 - [x] Portable project context and agent adapters
