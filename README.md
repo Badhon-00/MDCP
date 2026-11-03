@@ -13,7 +13,7 @@ Browse the searchable, phone-friendly [MDCP Skill Explorer](https://badhon-00.gi
 
 ## Existing skill library
 
-MDCP currently includes **82 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
+MDCP currently includes **84 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
 
 ## Platform coverage
 
