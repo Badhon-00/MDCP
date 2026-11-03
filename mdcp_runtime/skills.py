@@ -20,8 +20,8 @@ def discover_skills(root: str | Path, query: str = "", limit: int = 10) -> list[
         front = match.group(1) if match else ""
         name_match = re.search(r"^name:\s*(.+)$", front, re.M)
         desc_match = re.search(r"^description:\s*(.+)$", front, re.M)
-        name = name_match.group(1).strip().strip("\\"'") if name_match else file.parent.name
-        description = desc_match.group(1).strip().strip("\\"'") if desc_match else ""
+        name = name_match.group(1).strip().strip("\"'") if name_match else file.parent.name
+        description = desc_match.group(1).strip().strip("\"'") if desc_match else ""
         haystack = (name + " " + description + " " + file.parent.name).lower()
         score = sum(1 for term in terms if term in haystack)
         if not terms or score:
