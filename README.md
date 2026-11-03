@@ -140,6 +140,17 @@ Token savings vary by repository and provider. MDCP does not claim a guaranteed 
 
 Repository discovery, architecture mapping, security review, performance profiling, test planning, documentation, dependency auditing, API design, database review, frontend review, backend review, DevOps, accessibility, refactoring, incident triage and release verification. Skills are portable Markdown playbooks; execution depends on the host's available tools.
 
+## Persistent MCP task runtime
+
+The optional local MCP runtime adds durable API-backed tasks, SQLite recovery, provider fallback, and automatic discovery of relevant MDCP skills. Install it from a local checkout:
+
+~~~bash
+python3 -m pip install -e '.[mcp]'
+python3 -m mdcp_runtime.mcp_server
+~~~
+
+Configure your own provider API keys through the MCP server environment. Tasks can continue in this independent process while it remains running, even if the original chat session is unavailable. This does **not** bypass Claude.ai hosted usage limits. The worker currently returns model output; it does not modify files or run shell commands. See [runtime setup and limitations](docs/MDCP_RUNTIME.md).
+
 ## Connectors and MCP
 
 MDCP documents optional connector categories including source control, documentation, databases, design, browser testing, deployment, observability and team workflows. Connectors must be installed and authenticated in the host environment. Availability varies by provider and account.
