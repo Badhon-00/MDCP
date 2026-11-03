@@ -108,7 +108,7 @@ class ProviderRouter:
                 retry_after = _retry_after(exc.headers.get("Retry-After"))
                 failures.append({"provider": provider.name, "status": exc.code, "error": _safe_http_error(exc)})
                 self.cooldowns[provider.name] = time.monotonic() + (max(retry_after, 2 if exc.code == 429 else 0) if exc.code in self.RETRYABLE else 300)
-            except (urllib.error.URLError, TimeoutError, OSError, ValueError, KeyError, IndexError) as exc:
+            except (ProviderError, urllib.error.URLError, TimeoutError, OSError, ValueError, KeyError, IndexError) as exc:
                 failures.append({"provider": provider.name, "status": None, "error": type(exc).__name__})
                 self.cooldowns[provider.name] = time.monotonic() + 15
 
