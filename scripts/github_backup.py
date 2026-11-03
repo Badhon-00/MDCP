@@ -55,11 +55,13 @@ def list_gists(token: str) -> list[dict]:
 
 
 def git(args: list[str], token: str = "", cwd: Path | None = None) -> tuple[int, str]:
-    command = ["git"]
+    env = os.environ.copy()
     if token:
         basic = base64.b64encode(f"x-access-token:{token}".encode()).decode()
-        command += ["-c", f"http.extraHeader=Authorization: Basic {basic}"]
-    result = subprocess.run(command + args, cwd=cwd, capture_output=True, text=True)
+        env["GIT_CONFIG_COUNT"] = "1"
+        env["GIT_CONFIG_KEY_0"] = "http.extraHeader"
+        env["GIT_CONFIG_VALUE_0"] = f"Authorization: Basic {basic}"
+    result = subprocess.run(["git"] + args, cwd=cwd, capture_output=True, text=True, env=env)
     return result.returncode, scrub((result.stdout + result.stderr).strip(), token)
 
 
