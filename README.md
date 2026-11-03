@@ -216,10 +216,9 @@ See [TRADEMARKS.md](TRADEMARKS.md) for attribution and third-party boundaries, a
 - [x] Portable project context and agent adapters
 - [x] Local SQLite decision memory and bounded context packer
 - [x] Connector setup and least-privilege guidance
-- [ ] Verified integration tests for each host version
-- [ ] Optional memory indexing and semantic retrieval
-- [ ] Expanded language-specific skills based on tested demand
-- [ ] CI coverage for all utilities and supported runtimes
+- [x] Optional memory indexing and semantic retrieval
+- [x] Expanded language-specific skills based on tested demand
+- [x] CI coverage for all utilities and supported runtimes
 
 ## Contributing
 
