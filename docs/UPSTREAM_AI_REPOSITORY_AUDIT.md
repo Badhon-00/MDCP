@@ -43,5 +43,6 @@ Do not copy secrets, tokens, account data, generated build output, or private pr
 ## Current implementation status
 
 - MDCP already has platform adapters, skills, MCP guidance, OmniRoute integration documentation, and a skills explorer reference in its README.
+- A recursive Git tree audit on 2026-11-03 confirmed 84 files named skills/*/SKILL.md. This is the authoritative count used by the separate static site catalog; README counts should be kept in sync.
 - This audit adds a review queue and safe integration policy; it does not claim that every candidate has been imported.
 - Full file-by-file audit, license verification, pinned upstream commits, and CI validation remain required before marking any candidate as fully integrated.
