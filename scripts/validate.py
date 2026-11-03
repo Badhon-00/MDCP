@@ -9,7 +9,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parent.parent
 errors, warnings = [], []
 
-for f in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", "mcp/mcp.example.json"]:
+for f in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", ".mcp.json", "mcp/mcp.example.json"]:
     try:
         json.loads((root / f).read_text(encoding="utf-8"))
     except Exception as e:
@@ -40,7 +40,7 @@ for d in skills:
     if name in names:
         errors.append(f"{d.name}: duplicate name also used by {names[name]}")
     names[name] = d.name
-    if not desc or len(desc.group(1).strip().lstrip(">|-+ \n")) < 20:
+    if not desc or len(desc.group(1).strip().lstrip("> | -+\n")) < 20:
         errors.append(f"{d.name}: description missing or too short")
     elif len(desc.group(1)) > 1024:
         warnings.append(f"{d.name}: description over 1024 characters")

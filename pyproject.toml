@@ -4,17 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdcp-agent-fabric"
-version = "0.3.0"
-description = "Cross-platform skill distribution and bounded parallel repository analysis"
+version = "0.4.0"
+description = "Cross-platform skills, bounded analysis, and persistent API-backed MCP task runtime"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+mcp = ["mcp>=1.28,<2"]
 
 [project.scripts]
 mdcp-fabric = "mdcp_fabric.cli:main"
 
 [tool.setuptools]
-packages = ["mdcp_fabric"]
+packages = ["mdcp_fabric", "mdcp_runtime"]

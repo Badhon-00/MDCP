@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mdcp-runtime": {
+      "command": "python3",
+      "args": ["-m", "mdcp_runtime.mcp_server"],
+      "env": {
+        "PYTHONPATH": "${CLAUDE_PLUGIN_ROOT}",
+        "MDCP_REPO_ROOT": "${CLAUDE_PLUGIN_ROOT}",
+        "MDCP_STATE_DIR": "~/.mdcp"
+      }
+    }
+  }
+}
