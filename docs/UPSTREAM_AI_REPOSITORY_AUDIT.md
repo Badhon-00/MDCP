@@ -46,3 +46,13 @@ Do not copy secrets, tokens, account data, generated build output, or private pr
 - A recursive Git tree audit on 2026-11-03 confirmed 84 files named skills/*/SKILL.md. This is the authoritative count used by the separate static site catalog; README counts should be kept in sync.
 - This audit adds a review queue and safe integration policy; it does not claim that every candidate has been imported.
 - Full file-by-file audit, license verification, pinned upstream commits, and CI validation remain required before marking any candidate as fully integrated.
+
+
+## Newly added integrations — 2026-11-05
+
+| Owner repository | Observed purpose | MDCP treatment | License / status |
+|---|---|---|---|
+| [unslop](https://github.com/Badhon-00/unslop) | AI-writing pattern review, targeted rewrites, voice teaching and Python scanners | Added MDCP-authored cross-platform skill adapter at `skills/unslop/`; full upstream scanner suite remains separately installed | Upstream SKILL.md declares MIT; no root LICENSE file was found in the inspected owner mirror. No upstream code vendored. README reports latest core benchmark as no-ship; see integration notes. |
+| [api-anything](https://github.com/Badhon-00/api-anything) | Learns reusable website operations and exposes them through CLI/library/MCP | Added cross-platform skill and opt-in local STDIO MCP plugin manifest at `plugins/api-anything/` | MIT, copyright (c) 2026 Tianjun Zheng. Node >=22.13.0. No upstream implementation code vendored; cloud HTTP MCP hosting is not included. |
+
+The adapters are documented and discoverable in MDCP; they do not silently install packages, execute third-party code, configure clients, or deploy cloud infrastructure.

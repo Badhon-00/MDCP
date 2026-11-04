@@ -20,3 +20,6 @@ Skills are used as published. Their rules, including replica-skill's clean-room 
 ## Original to this repository
 
 `master-developer`, `mdcp-self-check`, `mdcp-token-meter` and `omniroute-free-llm-routing` are written for MDCP and covered by this repository's MIT license. OmniRoute and Ollama are separate projects with their own licenses; they are not bundled, only configured.
+
+| Unslop, https://github.com/theclaymethod/unslop (owner mirror: Badhon-00/unslop) | MIT declared in upstream SKILL.md; no root LICENSE file found in the inspected owner mirror | MDCP-authored skill adapter only; no upstream scanner code or reference corpus copied. Recheck canonical license before vendoring upstream files. |
+| API Anything, https://github.com/goodnight000/api-anything (owner mirror: Badhon-00/api-anything) | MIT; upstream copyright (c) 2026 Tianjun Zheng, see upstream LICENSE | MDCP-authored skill and optional MCP manifest only; no upstream implementation code copied. |

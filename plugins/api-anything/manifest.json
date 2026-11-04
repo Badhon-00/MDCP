@@ -1,0 +1,27 @@
+{
+  "id": "api-anything",
+  "name": "API Anything",
+  "version": "0.3.2",
+  "type": "mcp-server",
+  "enabledByDefault": false,
+  "description": "Optional local MCP server for learning and calling reusable website operations.",
+  "upstream": "https://github.com/goodnight000/api-anything",
+  "ownerMirror": "https://github.com/Badhon-00/api-anything",
+  "runtime": {
+    "node": ">=22.13.0"
+  },
+  "transport": "stdio",
+  "command": "npx",
+  "args": [
+    "-y",
+    "api-anything",
+    "mcp"
+  ],
+  "secrets": [],
+  "security": {
+    "requiresExplicitEnable": true,
+    "neverShareCredentials": true,
+    "requireApprovalForWrites": true,
+    "remoteHostingNotIncluded": true
+  }
+}

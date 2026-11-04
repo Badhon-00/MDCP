@@ -237,3 +237,11 @@ MDCP remains the core skills, adapters, MCP guidance and tooling repository. The
 - [Website separation and Cloudflare Pages migration plan](docs/WEBSITE_SEPARATION_CLOUDFLARE_MIGRATION.md)
 
 Third-party repositories are tracked as integration candidates, not automatically vendored. Their exact licenses, attribution, dependency security and compatibility must be reviewed before importing code or skills.
+
+
+## New optional skills and MCP integration
+
+- **Unslop** — writing audit and voice-preserving rewrite skill: [skill](skills/unslop/SKILL.md), [integration notes](docs/INTEGRATIONS_UNSLOP_API_ANYTHING.md).
+- **API Anything** — website-operation discovery skill and opt-in local MCP server: [skill](skills/api-anything/SKILL.md), [plugin manifest](plugins/api-anything/manifest.json), [setup and security](plugins/api-anything/README.md).
+
+Both are portable MDCP skills. API Anything's executable server is local STDIO by default; a cloud-hosted MCP bridge is not included or deployed.
