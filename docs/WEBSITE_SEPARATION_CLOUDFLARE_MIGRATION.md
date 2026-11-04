@@ -1,9 +1,9 @@
 # MDCP Website Separation and Cloudflare Pages Migration
 
 **Core repository:** https://github.com/Badhon-00/MDCP  
-**Planned website repository:** https://github.com/Badhon-00/MDCP-SITE  
+**Website repository:** https://github.com/Badhon-00/MDCP-SITE  
 **Hosting target:** Cloudflare Pages  
-**Status:** Plan and deployment contract; repository creation, Pages configuration, and first production deploy are not yet confirmed.
+**Status:** Source migration completed. The original charcoal/white `site/` interface and SVG favicon were moved into MDCP-SITE; shared SVG brand assets are retained in this repository. Cloudflare Pages configuration and production deployment remain unverified.
 
 ## Repository boundaries
 
@@ -57,7 +57,7 @@ The site must consume a pinned MDCP release, generated catalog artifact, or expl
     ├── README.md
     └── package.json
 
-Choose the framework after inspecting the existing site source and build constraints. Do not copy the old personal website's server, APIs, assets, or private configuration into this repository without a deliberate migration and license/security review.
+The migrated site intentionally preserves the original static HTML/CSS/JavaScript implementation rather than introducing a framework. Its build script reads `skills/*/SKILL.md` from the canonical MDCP repository and emits a static `catalog.json`. The personal `badhon-00.github.io` site and its server/API files were not changed.
 
 ## Footer information architecture
 
@@ -111,9 +111,11 @@ The available GitHub connection used for this change can inspect repositories an
 
 ## Acceptance checklist
 
-- [ ] MDCP-SITE repository exists and is separate from MDCP
-- [ ] Existing MDCP and personal website source/history remain intact
-- [ ] Website build passes locally and in Cloudflare
+- [x] MDCP-SITE repository exists and is separate from MDCP
+- [x] Original `MDCP/site/` page and favicon moved to MDCP-SITE root
+- [x] Shared monochrome MDCP mark and wordmark added to both repositories
+- [x] MDCP core source and personal website source/history remain intact
+- [x] Website source validation workflow added (Cloudflare production build still pending)
 - [ ] Footer links all resolve to real destinations
 - [ ] Search, category filters and skill detail links work
 - [ ] Mobile, tablet and desktop layouts pass

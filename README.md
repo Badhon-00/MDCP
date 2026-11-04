@@ -9,7 +9,7 @@
 
 ## Explore the skills visually
 
-Browse the searchable, phone-friendly [MDCP Skill Explorer](https://badhon-00.github.io/MDCP/) to find skills by task or category, open the source instructions, and copy skill links. The catalog is generated from the actual `skills/*/SKILL.md` files by GitHub Actions.
+The official [MDCP website source](https://github.com/Badhon-00/MDCP-SITE) is maintained in a separate repository. Its Cloudflare Pages build generates the searchable, phone-friendly skill catalog directly from this repository's `skills/*/SKILL.md` files.
 
 ## Existing skill library
 
@@ -231,7 +231,7 @@ MIT for MDCP's original files. Bundled skills retain their own licenses; see [TH
 
 ## Repository and website separation
 
-MDCP remains the core skills, adapters, MCP guidance and tooling repository. The public website is planned as a separate project, **[MDCP-SITE](https://github.com/Badhon-00/MDCP-SITE)**, hosted on Cloudflare Pages. The new repository and Cloudflare deployment must be created and verified before this link is treated as a live site.
+MDCP remains the core skills, adapters, MCP guidance and tooling repository. The public website source now lives in **[MDCP-SITE](https://github.com/Badhon-00/MDCP-SITE)**. The original `site/` folder has been moved out of this repository; Cloudflare Pages deployment still requires dashboard configuration and a verified production deploy.
 
 - [Upstream AI repository audit and integration policy](docs/UPSTREAM_AI_REPOSITORY_AUDIT.md)
 - [Website separation and Cloudflare Pages migration plan](docs/WEBSITE_SEPARATION_CLOUDFLARE_MIGRATION.md)
