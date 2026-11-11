@@ -1,0 +1,112 @@
+{
+  "policy": "Curated upstream catalogue; not vendored or auto-installed. Verify current activity, exact license, security, dependencies and terms before integrating source code.",
+  "repositories": [
+    {
+      "name": "darkzOGx/youtube-automation-agent",
+      "url": "https://github.com/darkzOGx/youtube-automation-agent",
+      "areas": [
+        "agent orchestration",
+        "script/video generation",
+        "SEO",
+        "approval-first publishing",
+        "analytics feedback"
+      ],
+      "use": "Architecture reference; do not import full runtime."
+    },
+    {
+      "name": "harry0703/MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "areas": [
+        "topic-to-video",
+        "voiceover",
+        "subtitles",
+        "short-form editing"
+      ],
+      "use": "Optional production adapter; inspect providers and license."
+    },
+    {
+      "name": "yt-dlp/yt-dlp",
+      "url": "https://github.com/yt-dlp/yt-dlp",
+      "areas": [
+        "media extraction",
+        "format selection",
+        "metadata"
+      ],
+      "use": "Optional worker dependency; honor content rights and platform terms."
+    },
+    {
+      "name": "FFmpeg/FFmpeg",
+      "url": "https://github.com/FFmpeg/FFmpeg",
+      "areas": [
+        "editing",
+        "transcoding",
+        "subtitles",
+        "thumbnail processing"
+      ],
+      "use": "External worker binary; build options affect licensing."
+    },
+    {
+      "name": "googleapis/google-api-nodejs-client",
+      "url": "https://github.com/googleapis/google-api-nodejs-client",
+      "areas": [
+        "Google OAuth",
+        "official YouTube API client"
+      ],
+      "use": "Preferred official Node.js API client reference."
+    },
+    {
+      "name": "youtube/api-samples",
+      "url": "https://github.com/youtube/api-samples",
+      "areas": [
+        "official API examples",
+        "uploads",
+        "playlists",
+        "search",
+        "analytics"
+      ],
+      "use": "Reference official API request patterns."
+    },
+    {
+      "name": "meeb/tubesync",
+      "url": "https://github.com/meeb/tubesync",
+      "areas": [
+        "channel monitoring",
+        "playlist monitoring",
+        "new upload detection",
+        "download queue"
+      ],
+      "use": "Optional self-hosted monitoring pattern; inspect resource footprint."
+    },
+    {
+      "name": "op7418/Youtube-clipper-skill",
+      "url": "https://github.com/op7418/Youtube-clipper-skill",
+      "areas": [
+        "long-video clipping",
+        "Shorts workflows",
+        "agent skill"
+      ],
+      "use": "Inspect skill structure and validate its tools before adoption."
+    },
+    {
+      "name": "Tyrrrz/YoutubeDownloader",
+      "url": "https://github.com/Tyrrrz/YoutubeDownloader",
+      "areas": [
+        "desktop downloader",
+        "playlist and format selection"
+      ],
+      "use": "Reference only; not a cloud backend dependency."
+    },
+    {
+      "name": "Rockingrushi/youtube_automation-free",
+      "url": "https://github.com/Rockingrushi/youtube_automation-free",
+      "areas": [
+        "local-first video generation",
+        "voiceover",
+        "subtitles",
+        "thumbnail",
+        "upload"
+      ],
+      "use": "Optional pipeline reference; verify repository identity and license before use."
+    }
+  ]
+}
