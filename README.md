@@ -11,9 +11,13 @@
 
 The official [MDCP website source](https://github.com/Badhon-00/MDCP-SITE) is maintained in a separate repository. Its Cloudflare Pages build generates the searchable, phone-friendly skill catalog directly from this repository's `skills/*/SKILL.md` files.
 
+## YouTube Creator Ecosystem
+
+MDCP includes a cloud-ready YouTube Studio toolkit for channel strategy, video editing, Shorts, thumbnails, SEO, approval-first publishing, analytics and monitoring. See the [YouTube ecosystem guide](docs/YOUTUBE_ECOSYSTEM.md), [plugin runtime](plugins/youtube-studio/README.md), and [upstream repository catalogue](docs/YOUTUBE_UPSTREAMS.json).
+
 ## Existing skill library
 
-MDCP currently includes **84 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
+MDCP currently includes **91 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
 
 ## Platform coverage
 
