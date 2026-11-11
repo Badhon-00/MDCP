@@ -1,0 +1,79 @@
+{
+  "name": "mdcp-youtube-studio",
+  "version": "1.0.0",
+  "description": "Cloud-ready YouTube creator, editing, SEO, publishing, analytics and monitoring toolkit.",
+  "runtime": {
+    "language": "node",
+    "version": ">=20",
+    "module": "esm",
+    "entrypoint": "runtime/index.js"
+  },
+  "capabilities": [
+    "youtube.channel.read",
+    "youtube.video.read",
+    "youtube.analytics.read",
+    "youtube.video.upload",
+    "youtube.playlist.write",
+    "youtube.thumbnail.generate",
+    "youtube.media.download_owned",
+    "youtube.seo.plan",
+    "youtube.channel.monitor"
+  ],
+  "auth": {
+    "secrets": [
+      "YOUTUBE_API_KEY",
+      "YOUTUBE_CLIENT_ID",
+      "YOUTUBE_CLIENT_SECRET",
+      "YOUTUBE_REFRESH_TOKEN"
+    ],
+    "scopes": [
+      "https://www.googleapis.com/auth/youtube.upload",
+      "https://www.googleapis.com/auth/youtube.readonly",
+      "https://www.googleapis.com/auth/yt-analytics.readonly"
+    ],
+    "secret_storage": "host-secret-manager"
+  },
+  "approval_required": [
+    "video_upload",
+    "video_publish_public",
+    "video_visibility_change",
+    "video_delete",
+    "playlist_mutation",
+    "comment_write"
+  ],
+  "quota": {
+    "provider": "youtube-data-api-v3",
+    "durable_ledger_required_in_cloud": true
+  },
+  "tools": [
+    {
+      "name": "youtube_search_videos",
+      "operation": "searchVideos",
+      "read_only": true
+    },
+    {
+      "name": "youtube_get_video_stats",
+      "operation": "getVideoStats",
+      "read_only": true
+    },
+    {
+      "name": "youtube_channel_analytics",
+      "operation": "queryChannelAnalytics",
+      "read_only": true
+    },
+    {
+      "name": "youtube_upload_video",
+      "operation": "uploadVideo",
+      "approval_required": true
+    },
+    {
+      "name": "youtube_generate_thumbnail",
+      "operation": "createThumbnail"
+    },
+    {
+      "name": "youtube_download_owned_media",
+      "operation": "downloadOwnedMedia",
+      "approval_required": true
+    }
+  ]
+}

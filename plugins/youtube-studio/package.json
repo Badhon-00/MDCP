@@ -1,0 +1,13 @@
+{
+  "name": "@mdcp/youtube-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": "./runtime/index.js",
+  "scripts": {
+    "check": "node --check runtime/index.js && node --check runtime/youtube-client.js && node --check runtime/media.js && node --check runtime/analytics.js"
+  }
+}
