@@ -74,6 +74,11 @@
       "name": "youtube_download_owned_media",
       "operation": "downloadOwnedMedia",
       "approval_required": true
+    },
+    {
+      "name": "youtube_add_to_playlist",
+      "operation": "addToPlaylist",
+      "approval_required": true
     }
   ]
 }
