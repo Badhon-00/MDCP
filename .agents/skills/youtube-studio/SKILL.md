@@ -1,15 +1,7 @@
 ---
 name: youtube-studio
-description: Portable YouTube creator workflow for strategy, editing, SEO, publishing, analytics and policy review.
+description: One compact cross-agent skill for planning, producing, editing, optimizing, publishing and monitoring YouTube content through approved tools.
 ---
-# YouTube Studio
-Use canonical MDCP skills:
-- `skills/youtube-studio/SKILL.md`
-- `skills/youtube-channel-strategy/SKILL.md`
-- `skills/youtube-video-production/SKILL.md`
-- `skills/youtube-seo-discovery/SKILL.md`
-- `skills/youtube-publishing-automation/SKILL.md`
-- `skills/youtube-analytics-monitoring/SKILL.md`
-- `skills/youtube-policy-safety/SKILL.md`
+# YouTube Studio — unified skill
 
-Keep operations approval-first, credentials in secret managers, quotas in durable storage, and media processing in workers. Never promise growth or automate spam.
+Use the canonical workflow at `skills/youtube-studio/SKILL.md` in MDCP when available. This mirror is intentionally short to minimize always-loaded context. Route to Strategy, Production, Discovery, Publishing or Analytics based on the request. Use the single `youtube` MCP tool for API work. Preserve original media; require explicit approval for uploads, public publishing, visibility changes, deletion, comments and playlist mutations. Never download media without rights. Never buy engagement, spam, evade quotas or promise growth. Cloud requires a secret manager, durable quota ledger, queue and separate media worker. Return concise evidence-backed results. Zero inference-token use cannot be guaranteed.

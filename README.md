@@ -15,6 +15,12 @@ The official [MDCP website source](https://github.com/Badhon-00/MDCP-SITE) is ma
 
 MDCP includes a cloud-ready YouTube Studio toolkit for channel strategy, video editing, Shorts, thumbnails, SEO, approval-first publishing, analytics and monitoring. See the [YouTube ecosystem guide](docs/YOUTUBE_ECOSYSTEM.md), [plugin runtime](plugins/youtube-studio/README.md), and [upstream repository catalogue](docs/YOUTUBE_UPSTREAMS.json).
 
+## Unified Creator + Cybersecurity Automation
+
+MDCP adds one compact cross-agent umbrella skill for **authorized cybersecurity defense, website vulnerability review, SQL injection prevention, E2E testing, and complete rights-safe YouTube automation**. The unified router is documented in [`skills/creator-security-automation/SKILL.md`](skills/creator-security-automation/SKILL.md), with portable mirrors under `.agents/skills/` and `.gpt/skills/`. Its single MCP tool adapter is in [`plugins/mdcp-unified/`](plugins/mdcp-unified/): passive HTTPS/header audit, heuristic SQL source review, E2E test-plan generation, and delegation to the existing YouTube runtime when configured.
+
+Security checks are defensive and authorization-bound; they do not perform exploit attempts or bypass access controls. YouTube publishing and other external mutations remain approval-gated. Thumbnail generation, editing/rendering, cloud queues, OAuth and remote hosting require their respective configured tools/services; documentation does not imply those services are already deployed.
+
 ## Existing skill library
 
 MDCP currently includes **91 curated skills** across core development, security, backend/data, frontend, design, Three.js, workflows, clean-room app reconstruction, and skill/plugin/MCP authoring. See the [skill catalog](skills/) and [third-party notices](THIRD_PARTY_NOTICES.md) for source and license details.
