@@ -1,6 +1,7 @@
 export {createYouTubeClient} from "./youtube-client.js";
 export {queryChannelAnalytics} from "./analytics.js";
 export {createThumbnail,downloadOwnedMedia} from "./media.js";
+export {YOUTUBE_TOOL_SCHEMA,executeYouTubeOperation,createYouTubeTool,registerYouTubeTool} from "./agent-tool.js";
 
 export async function searchVideos(client, query, maxResults=10) {
   if(!client?.request || !query?.trim()) throw new Error("client and search query are required");
