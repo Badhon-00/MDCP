@@ -1,0 +1,19 @@
+{
+  "name": "mdcp-unified-creator-security",
+  "version": "1.0.0",
+  "description": "One compact cross-agent entrypoint for authorized website defense and YouTube creator automation.",
+  "runtime": {"language":"node","version":">=20","module":"esm","entrypoint":"runtime/agent-tool.js"},
+  "compatibility": ["MCP-compatible-hosts","Claude-Code","Codex","ChatGPT-Projects-and-connectors","Cursor","Google-Antigravity","Windsurf","generic-agent-runtimes"],
+  "security": {
+    "mode": "defensive-authorized-only",
+    "active_exploitation": false,
+    "requires_explicit_target_allowlist": true,
+    "requires_network_egress_controls": true
+  },
+  "tools": [{
+    "name": "mdcp",
+    "entrypoint": "runtime/agent-tool.js",
+    "description": "Single operation-routed tool for passive website security review, SQL query safety review, E2E test planning and approved YouTube creator operations.",
+    "operations": ["website_security_audit","sql_code_review","e2e_test_plan","youtube"]
+  }]
+}
